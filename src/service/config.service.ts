@@ -1,27 +1,5 @@
+import { configs } from "../data/config";
 import { Config } from "../types/config.type";
-
-const configs: Config[] = [
-  {
-    id: 1,
-    key: "key1",
-    value: "value1",
-  },
-  {
-    id: 2,
-    key: "key2",
-    value: "value2",
-  },
-  {
-    id: 3,
-    key: "key3",
-    value: "value3",
-  },
-  {
-    id: 4,
-    key: "key4",
-    value: "value4",
-  },
-];
 
 export const configService = {
   find: () => {
@@ -29,23 +7,23 @@ export const configService = {
   },
 
   get: (id: number) => {
-    return configs.find((patient) => patient.id === id);
+    return configs.find((config) => config.id === id);
   },
 
-  create: (patient: Config) => {
-    configs.push(patient);
-    return patient;
+  create: (config: Config) => {
+    configs.push(config);
+    return config;
   },
 
-  update: (id: number, patient: Config) => {
-    const patientIndex = configs.findIndex((patient) => patient.id === id);
-    configs[patientIndex] = patient;
-    return patient;
+  update: (id: number, config: Config) => {
+    const configIndex = configs.findIndex((config) => config.id === id);
+    configs[configIndex] = config;
+    return config;
   },
 
   delete: (id: number) => {
-    const patientIndex = configs.findIndex((patient) => patient.id === id);
-    configs.splice(patientIndex, 1);
+    const configIndex = configs.findIndex((config) => config.id === id);
+    configs.splice(configIndex, 1);
     return "ok";
   },
 };

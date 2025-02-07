@@ -1,6 +1,7 @@
 import { program } from "commander";
 import {
   controllerGenerator,
+  dataGenerator,
   routerGenerator,
   serviceGenerator,
   typesGenerator,
@@ -18,6 +19,8 @@ program
     console.log("Starting the generation process...");
     console.log(`Generate ${name} types...`);
     typesGenerator(name);
+    console.log(`Generate ${name} data...`);
+    dataGenerator(name);
     console.log(`Generate ${name} service...`);
     serviceGenerator(name);
     console.log(`Generate ${name} controller...`);

@@ -1,27 +1,5 @@
+import { appointments } from "../data/appointments";
 import { Appointments } from "../types/appointment.type";
-
-const appointments: Appointments[] = [
-  {
-    id: 1,
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  {
-    id: 2,
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  {
-    id: 3,
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-  {
-    id: 4,
-    startDate: new Date(),
-    endDate: new Date(),
-  },
-];
 
 export const appointmentService = {
   find: () => {

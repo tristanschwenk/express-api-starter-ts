@@ -85,6 +85,7 @@ const getModelName = (name: string) =>
 export const serviceGenerator = (name: string) => {
   const payload = `
   import { ${getModelName(name)} } from "../types/${name}.type";
+  import { ${name}s } from "../data/${name}";
   export const ${name}Service = {
     find: () => {
       return ${name}s;
@@ -120,4 +121,14 @@ export type ${getModelName(name)} = {
 `;
 
   return fs.writeFile(path.join("src/types/", `${name}.type.ts`), payload);
+};
+
+export const dataGenerator = (name: string) => {
+  const payload = `
+  import { $${getModelName(name)} } from "../types/${name}.type";
+
+  export const ${name}s: ${getModelName(name)}[] = [];
+`;
+
+  return fs.writeFile(path.join("src/data/", `${name}.ts`), payload);
 };

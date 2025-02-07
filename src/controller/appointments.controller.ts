@@ -13,7 +13,7 @@ export const appointmentController = {
   get: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(appointmentService.get(id));
+      return res.json(appointmentService.get(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -32,7 +32,7 @@ export const appointmentController = {
     try {
       const { id } = req.params;
       const patient = req.body;
-      return res.json(appointmentService.update(id, patient));
+      return res.json(appointmentService.update(parseInt(id), patient));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -41,7 +41,7 @@ export const appointmentController = {
   delete: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(appointmentService.delete(id));
+      return res.json(appointmentService.delete(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }

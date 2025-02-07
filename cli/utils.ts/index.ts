@@ -4,7 +4,7 @@ import path from "path";
 export const controllerGenerator = (name: string) => {
   const payload = `
 import { Request, Response } from "express";
-import { ${name}Service } from "../service/.service";
+import { ${name}Service } from "../service/${name}.service";
 
 export const ${name}Controller = {
   find: (req: Request, res: Response) => {
@@ -18,7 +18,7 @@ export const ${name}Controller = {
   get: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(${name}Service.get(id));
+      return res.json(${name}Service.get(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -37,7 +37,7 @@ export const ${name}Controller = {
     try {
       const { id } = req.params;
       const ${name} = req.body;
-      return res.json(${name}Service.update(id, ${name}));
+      return res.json(${name}Service.update(parseInt(id), ${name}));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -94,7 +94,7 @@ export const serviceGenerator = (name: string) => {
       return ${name}s.find((${name}) => ${name}.id === id);;
     },
     create: (${name}: ${getModelName(name)}) => {
-      ${name}s.push(${name});
+      ${name}s.push({...${name}, id: ${name}s.length + 1});
       return ${name};
     },
     update: (id: number, ${name}: ${getModelName(name)}) => {
@@ -125,7 +125,7 @@ export type ${getModelName(name)} = {
 
 export const dataGenerator = (name: string) => {
   const payload = `
-  import { $${getModelName(name)} } from "../types/${name}.type";
+  import { ${getModelName(name)} } from "../types/${name}.type";
 
   export const ${name}s: ${getModelName(name)}[] = [];
 `;

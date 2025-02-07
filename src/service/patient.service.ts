@@ -11,7 +11,7 @@ export const patientService = {
   },
 
   create: (patient: Patient) => {
-    patients.push(patient);
+    patients.push({ ...patient, id: patients.length + 1 });
     return patient;
   },
 

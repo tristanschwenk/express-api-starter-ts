@@ -13,7 +13,7 @@ export const configController = {
   get: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(configService.get(id));
+      return res.json(configService.get(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -32,7 +32,7 @@ export const configController = {
     try {
       const { id } = req.params;
       const patient = req.body;
-      return res.json(configService.update(id, patient));
+      return res.json(configService.update(parseInt(id), patient));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -41,7 +41,7 @@ export const configController = {
   delete: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(configService.delete(id));
+      return res.json(configService.delete(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }

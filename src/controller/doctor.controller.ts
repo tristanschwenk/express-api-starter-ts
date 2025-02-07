@@ -13,7 +13,7 @@ export const doctorController = {
   get: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(doctorService.get(id));
+      return res.json(doctorService.get(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -21,8 +21,8 @@ export const doctorController = {
 
   create: (req: Request, res: Response) => {
     try {
-      const patient = req.body;
-      return res.json(doctorService.create(patient));
+      const doctor = req.body;
+      return res.json(doctorService.create(doctor));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -31,8 +31,8 @@ export const doctorController = {
   update: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const patient = req.body;
-      return res.json(doctorService.update(id, patient));
+      const doctor = req.body;
+      return res.json(doctorService.update(parseInt(id), doctor));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -41,7 +41,7 @@ export const doctorController = {
   delete: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(doctorService.delete(id));
+      return res.json(doctorService.delete(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }

@@ -1,5 +1,6 @@
 import express from "express";
 import { patientController } from "../controller/patient.controller";
+import { sessionMiddleware } from "../middleware/session.middleware";
 
 const patientsRouter = express.Router();
 

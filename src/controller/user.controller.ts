@@ -1,12 +1,11 @@
-import { Request, Response } from "express";
-import { patientService } from "../service/patient.service";
 
-export const patientController = {
+import { Request, Response } from "express";
+import { userService } from "../service/user.service";
+
+export const userController = {
   find: (req: Request, res: Response) => {
-    console.log(req.user);
     try {
-      const result = patientService.find();
-      return res.json(result);
+      return res.json(userService.find());
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -15,7 +14,7 @@ export const patientController = {
   get: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(patientService.get(parseInt(id)));
+      return res.json(userService.get(parseInt(id)));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -23,8 +22,8 @@ export const patientController = {
 
   create: (req: Request, res: Response) => {
     try {
-      const patient = req.body;
-      return res.json(patientService.create(patient));
+      const user = req.body;
+      return res.json(userService.create(user));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -33,8 +32,8 @@ export const patientController = {
   update: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      const patient = req.body;
-      return res.json(patientService.update(parseInt(id), patient));
+      const user = req.body;
+      return res.json(userService.update(parseInt(id), user));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }
@@ -43,7 +42,7 @@ export const patientController = {
   delete: (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      return res.json(patientService.delete(parseInt(id)));
+      return res.json(userService.delete(id));
     } catch (error) {
       return res.status(500).json({ message: "Internal Server Error" });
     }

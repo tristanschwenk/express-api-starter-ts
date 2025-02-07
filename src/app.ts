@@ -13,6 +13,10 @@ import patientsRouter from "./routers/patients";
 import doctorsRouter from "./routers/doctors";
 import configRouter from "./routers/config";
 import appointmentRouter from "./routers/appointments";
+import { userController } from "./controller/user.controller";
+import userRouter from "./routers/user";
+import authRouter from "./routers/auth";
+import { sessionMiddleware } from "./middleware/session.middleware";
 
 const app = express();
 
@@ -27,10 +31,13 @@ app.get<{}, MessageResponse>("/", (req, res) => {
   });
 });
 
+app.use("/auth", authRouter);
+app.use(sessionMiddleware.isLoggedIn);
 app.use("/patients", patientsRouter);
 app.use("/appointments", appointmentRouter);
 app.use("/doctors", doctorsRouter);
 app.use("/config", configRouter);
+app.use("/users", userRouter);
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
